@@ -1,0 +1,25 @@
+.table {
+  width: 1024px;
+}
+
+.table td,
+th {
+  border-bottom: 1px solid #ddd;
+  padding: 20px 0px 20px 0px;
+  text-align: center;
+  width: 14.28%;
+}
+
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.footer-table {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+

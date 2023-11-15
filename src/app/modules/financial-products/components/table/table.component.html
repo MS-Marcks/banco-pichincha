@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="table-responsive">
+    <table class="table ">
+      <thead>
+        <tr>
+          <th>Logo</th>
+          <th>Nombre del producto</th>
+          <th>Descripción <i class="fa fa-info-circle" aria-hidden="true"></i></th>
+          <th>Fecha de liberación <i class="fa fa-info-circle" aria-hidden="true"></i></th>
+          <th>Fecha de revisión <i class="fa fa-info-circle" aria-hidden="true"></i></th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Logo</td>
+          <td>Nombre del producto</td>
+          <td>Descripción</td>
+          <td>Fecha de liberación</td>
+          <td>Fecha de revisión</td>
+          <td>
+            <shared-dropdown>
+              <button type="button" (click)="actionDropDown('EDIT','id')"><i class="fa fa-pencil"
+                  aria-hidden="true"></i>Editar</button>
+              <button type="button" (click)="actionDropDown('DELETE','id')"><i class="fa fa-trash"
+                  aria-hidden="true"></i>Eliminar</button>
+            </shared-dropdown>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footer-table">
+    <div>
+      5 Resultados
+    </div>
+    <div>
+      <select name="" class="form-field-select">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+      </select>
+    </div>
+  </div>
+</div>
