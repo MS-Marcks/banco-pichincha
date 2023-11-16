@@ -8,7 +8,6 @@ export class InputNumericOnlyDirective {
   constructor(private el: ElementRef) { }
 
   @HostListener("input", ["$event"]) onInput(event: Event): void {
-    const input = event as InputEvent;
     const initialValue = this.el.nativeElement.value;
     this.el.nativeElement.value = initialValue.replace(/[^0-9]/g, "");
 

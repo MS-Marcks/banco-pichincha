@@ -1,7 +1,7 @@
-import { AfterContentInit, AfterViewChecked, Component, ElementRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnDestroy, Renderer2 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ToastService } from './toast.service';
-import { EToast } from 'src/app/configs/etoast';
+import { EToast } from '../../../configs/etoast';
 import { IToast } from '../../interfaces/itoast';
 
 @Component({

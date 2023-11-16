@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
 import { FinancialProductsRoutingModule } from './financial-products-routing.module';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 import { FinancialProductsComponent } from './pages/financial-products/financial-products.component';
 import { TableComponent } from './components/table/table.component';

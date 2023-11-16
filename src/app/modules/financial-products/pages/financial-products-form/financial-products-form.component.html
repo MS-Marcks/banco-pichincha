@@ -26,7 +26,7 @@
             placeholder="Tarjeta de Crédito (Ejem: 12345)" formControlName="name" required>
           <small *ngIf="form.controls['name'].errors && form.controls['name'].touched" id="name-help"
             class="form-error">Nombre no
-            valido!</small>
+            válido!</small>
         </div>
       </div>
       <div class="form-row">
@@ -83,7 +83,7 @@
           <button type="button" class="btn btn-secondary" (click)="resetForm()">Reiniciar</button>
         </div>
         <div>
-          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button type="submit" id="saveProduct" class="btn btn-primary">Guardar</button>
         </div>
       </div>
     </form>

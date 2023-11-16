@@ -6,16 +6,15 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { ToastComponent } from './components/toast/toast.component';
 import { InputNumericOnlyDirective } from './directives/input-numeric-only.directive';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
-  declarations: [SearchBarComponent,
+  declarations: [
+    SearchBarComponent,
     ModalComponent,
     DropdownComponent,
     ToastComponent,
     TooltipComponent,
-    InputNumericOnlyDirective,
-    PaginationComponent,
+    InputNumericOnlyDirective
   ],
   exports: [
     SearchBarComponent,
@@ -24,7 +23,6 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ToastComponent,
     TooltipComponent,
     InputNumericOnlyDirective,
-    PaginationComponent,
   ],
   imports: [
     CommonModule

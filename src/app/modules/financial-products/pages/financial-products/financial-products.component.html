@@ -7,7 +7,7 @@
   </div>
 </header>
 
-<financial-products-table [dataSource]="filterDataSource"  (dropDown)="actionDropDown($event)"></financial-products-table>
+<financial-products-table  *ngIf="dataSource" [dataSource]="dataSource"  (dropDown)="actionDropDown($event)"></financial-products-table>
 
 <shared-modal *ngIf="modalIsVisible" (close)="closeModal($event)" [title]="'Eliminar Registro'">
   <p class="group">

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { EDropDown } from 'src/app/configs/edrop-down';
-import { EToast } from 'src/app/configs/etoast';
-import { PreloadScreenService } from 'src/app/core/preload-screen/preload-screen.service';
-import { FinancialProductsService } from 'src/app/core/services/financial-products.service';
-import { ToastService } from 'src/app/shared/components/toast/toast.service';
-import { IDropDown } from 'src/app/shared/interfaces/idrop-down';
-import { IFinancialProducts } from 'src/app/shared/interfaces/ifinancial-products';
+import { EDropDown } from '../../../../configs/edrop-down';
+import { EToast } from '../../../../configs/etoast';
+import { PreloadScreenService } from '../../../../core/preload-screen/preload-screen.service';
+import { FinancialProductsService } from '../../../../core/services/financial-products.service';
+import { ToastService } from '../../../../shared/components/toast/toast.service';
+import { IDropDown } from '../../../../shared/interfaces/idrop-down';
+import { IFinancialProducts } from '../../../../shared/interfaces/ifinancial-products';
 
 @Component({
   selector: 'app-financial-products',
@@ -15,17 +15,15 @@ import { IFinancialProducts } from 'src/app/shared/interfaces/ifinancial-product
 })
 export class FinancialProductsComponent implements OnInit {
 
-
   modalIsVisible: boolean = false;
+  dataSourceShadow: IFinancialProducts[] | undefined;
   dataSource: IFinancialProducts[] | undefined;
-  filterDataSource: IFinancialProducts[] | undefined;
   selectedProduct: IFinancialProducts | undefined;
 
   constructor(private router: Router,
     private financialProductsService: FinancialProductsService,
     private toastService: ToastService,
     private preloadScreenService: PreloadScreenService) { }
-
 
   ngOnInit(): void {
     this.getProducts();
@@ -36,7 +34,7 @@ export class FinancialProductsComponent implements OnInit {
       this.preloadScreenService.show();
       const res = await this.financialProductsService.Get();
       this.dataSource = res;
-      this.filterDataSource = res;
+      this.dataSourceShadow = res;
     } catch (error: any) {
       console.error(error)
     } finally {
@@ -48,10 +46,10 @@ export class FinancialProductsComponent implements OnInit {
     if (this.selectedProduct === undefined) return;
     try {
       const isExistProduct = await this.financialProductsService.verificationProductById(this.selectedProduct.id);
-      if (!isExistProduct) return this.toastService.showToast({ type: EToast.DANGER, message: "Error: El producto no existe" });
+      if (!isExistProduct) return this.toastService.showToast(EToast.DANGER,"Error: El producto no existe");
       this.preloadScreenService.show();
       await this.financialProductsService.Delete(`id=${this.selectedProduct.id}`);
-      this.toastService.showToast({ type: EToast.SUCCESS, message: "Se ha eliminado exitosamente" });
+      this.toastService.showToast(EToast.SUCCESS,"Se ha eliminado exitosamente");
       this.closeModal(true);
     } catch (error: any) {
       console.log(error);
@@ -85,13 +83,13 @@ export class FinancialProductsComponent implements OnInit {
     this.router.navigateByUrl(url);
   }
 
-
   search(event: string): void {
-    if (event === "") {
-      this.filterDataSource = this.dataSource;
+    console.log(event)
+    if (event.trim() === "") {
+      this.dataSource = this.dataSourceShadow;
       return;
     };
-    this.filterDataSource = this.dataSource?.filter(item => Object.values(item).some(valor => valor.toLowerCase().includes(event)));
+    this.dataSource = this.dataSourceShadow?.filter(item => Object.values(item).some(value => value.toLowerCase().includes(event.toLocaleLowerCase())));
   }
 
 }

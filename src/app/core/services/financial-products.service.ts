@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BaseEndpointService } from '../abstract/base-endpoint.service';
-import { IFinancialProducts } from 'src/app/shared/interfaces/ifinancial-products';
+import { IFinancialProducts } from '../../shared/interfaces/ifinancial-products';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { Observable, lastValueFrom } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
