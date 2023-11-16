@@ -46,6 +46,13 @@ export class ToastComponent implements OnDestroy {
     setTimeout(() => {
       this.renderer.removeClass(toastElement, 'toast-show');
       this.renderer.addClass(toastElement, 'toast-hide');
+      if (this.toastConf.type === EToast.SUCCESS) {
+        this.renderer.removeClass(toastElement, 'toast-success');
+      } else if (this.toastConf.type === EToast.WARNING) {
+        this.renderer.removeClass(toastElement, 'toast-warning');
+      } else if (this.toastConf.type === EToast.DANGER) {
+        this.renderer.removeClass(toastElement, 'toast-danger');
+      }
     }, 3000);
   }
 }

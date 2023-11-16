@@ -1,45 +1,89 @@
 <div class="card">
   <header class="header-form">
-    <h1>Formulario de Registro</h1>
+    <h1>Formulario de Registro <a routerLink="/products">(Regresar)</a></h1>
   </header>
   <div class="body-form">
-    <form>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-row">
         <div>
-          <label for="">ID</label>
-          <input type="text" name="" class="form-field" required>
+          <label for="id" style="display: flex; flex-direction: row; gap: 5px;">ID
+            <shared-tooltip message="El ID debe contener entre 3 y 10 caracteres">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </shared-tooltip>
+          </label>
+          <input id="id" type="text" name="id" class="form-field" formControlName="id" required
+            placeholder="(Ejem: tjr-crd)">
+          <small *ngIf="form.controls['id'].errors && form.controls['id'].touched" id="id-help" class="form-error">ID no
+            válido!</small>
         </div>
         <div>
-          <label for="">Nombre</label>
-          <input type="text" name="" id="" class="form-field">
+          <label for="name" style="display: flex; flex-direction: row; gap: 5px;">Nombre
+            <shared-tooltip message="El nombre debe contener entre 5 y 100 caracteres (Tarjeta de crédito)">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </shared-tooltip>
+          </label>
+          <input type="text" name="name" InputNumericOnly id="name" class="form-field"
+            placeholder="Tarjeta de Crédito (Ejem: 12345)" formControlName="name" required>
+          <small *ngIf="form.controls['name'].errors && form.controls['name'].touched" id="name-help"
+            class="form-error">Nombre no
+            valido!</small>
         </div>
       </div>
       <div class="form-row">
         <div>
-          <label for="">Descripción</label>
-          <input type="text" name="" class="form-field" required>
+          <label for="description" style="display: flex; flex-direction: row; gap: 5px;">Descripción
+            <shared-tooltip
+              message="La descripción debe contener entre 10 y 200 caracteres (Tarjeta de consumo bajo la modalidad de crédito)">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </shared-tooltip>
+          </label>
+          <input type="text" name="description" id="description" class="form-field" formControlName="description"
+            placeholder="Tarjeta de consumo bajo la modalidad de crédito (Ejem: Visa)" required>
+          <small *ngIf="form.controls['description'].errors && form.controls['description'].touched"
+            id="description-help" class="form-error">Descripción no valida!</small>
         </div>
         <div>
-          <label for="">Logo</label>
-          <input type="text" name="" id="" class="form-field">
+          <label for="logo" style="display: flex; flex-direction: row; gap: 5px;">Logo
+            <shared-tooltip message="El Logo debe ser un enlace">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </shared-tooltip>
+          </label>
+          <input type="text" name="logo" id="logo" class="form-field" formControlName="logo"
+            placeholder="Enlace (Ejem: https://pagina.com/imagen.png)" required>
+          <small *ngIf="form.controls['logo'].errors && form.controls['logo'].touched" id="logo-help"
+            class="form-error">Enlace no valido!</small>
         </div>
       </div>
       <div class="form-row">
         <div>
-          <label for="">Fecha de liberación</label>
-          <input type="date" name="" class="form-field" required>
+          <div style="display: flex; flex-direction: row; gap: 5px; margin: 0px; padding: 0px;">
+            <label for="date_release">Fecha de liberación</label>
+            <shared-tooltip message="La fecha de liberación debe ser a partir de la fecha actual o posterior">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </shared-tooltip>
+          </div>
+          <input type="date" name="date_release" (change)="setDateRevision($event)" id="date_release"
+            class="form-field form-field-full" formControlName="date_release" required>
+          <small *ngIf="form.controls['date_release'].errors && form.controls['date_release'].touched"
+            id="date_release-help" class="form-error">Fecha de liberación no valida!</small>
         </div>
         <div>
-          <label for="">Fecha de revisión</label>
-          <input type="date" name="" id="" class="form-field">
+          <div style="display: flex; flex-direction: row; gap: 5px; margin: 0px; padding: 0px;">
+            <label class="disabled" for="date_revision">Fecha de revisión</label>
+            <shared-tooltip
+              message="La fecha de revisión será exactamente un año posterior a la fecha de liberación (automática)">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </shared-tooltip>
+          </div>
+          <div id="date_revision" class="disabled">{{form.get("date_revision")?.value}}</div>
         </div>
       </div>
-      <div class="form-row">
+      <div class="form-row group">
         <div>
-          <button type="button" class="btn btn-secondary">Reiniciar</button>
+          <button type="button" class="btn btn-secondary" (click)="resetForm()">Reiniciar</button>
         </div>
         <div>
-          <button type="button" class="btn btn-primary">Guardar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
       </div>
     </form>

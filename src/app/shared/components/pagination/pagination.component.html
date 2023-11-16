@@ -1,0 +1,17 @@
+<div class="container-pagination">
+  <div><button class="btn btn-primary" (click)="back()">Anterior</button></div>
+  <div>{{currentPage}}/{{totalPages}}</div>
+  <div><button class="btn btn-primary" (click)="next()">Siguiente</button></div>
+</div>
+<div class="footer-pagination">
+  <div>
+    {{(dataSource === undefined)?0:results}} Resultados
+  </div>
+  <div>
+    <select name="itemforpage" (change)="onSelectedItemForPage($event)" class="form-field-select">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+    </select>
+  </div>
+</div>

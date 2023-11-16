@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, firstValueFrom, lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,32 +9,28 @@ export abstract class BaseEndpointService<T> {
 
   constructor(@Inject(String) protected _urlBase: string, protected _http: HttpClient) { }
 
-  Get(): Observable<T> {
-    return this._http.get<T>(this._urlBase).pipe(catchError(this.handleError));
+  async Get(): Promise<T[]> {
+    return lastValueFrom(this._http.get<T[]>(this._urlBase).pipe());
   }
 
-  Filter(item: string): Observable<T> {
-    return this._http.get<T>(`${this._urlBase}${item}`).pipe(catchError(this.handleError));
+  async Filter(item: string): Promise<T> {
+    return lastValueFrom(this._http.get<T>(`${this._urlBase}?${item}`).pipe());
   }
 
-  Create(item: T): Observable<T> {
-    return this._http.post<T>(this._urlBase, item).pipe(catchError(this.handleError));
+  async Post(item: T): Promise<T> {
+    return lastValueFrom(this._http.post<T>(this._urlBase, item).pipe());
   }
 
-  Update(item: T): Observable<T> {
-    return this._http.put<T>(this._urlBase, item).pipe(catchError(this.handleError));
+  async Put(item: T): Promise<T> {
+    return lastValueFrom(this._http.put<T>(this._urlBase, item).pipe());
   }
 
-  Patch(item: T): Observable<T> {
-    return this._http.patch<T>(this._urlBase, item).pipe(catchError(this.handleError));
-  }
-  Delete(item: string): Observable<T> {
-    return this._http.delete<T>(`${this._urlBase}${item}`).pipe(catchError(this.handleError));
+  async Patch(item: T): Promise<T> {
+    return lastValueFrom(this._http.patch<T>(this._urlBase, item).pipe());
   }
 
-  private handleError(error: any): Observable<never> {
-    // Manejar errores aquí, puedes loguearlos, mostrar mensajes, etc.
-    console.error('Error en la solicitud:', error);
-    return error.message || 'Error en la solicitud';
+  async Delete(item: string): Promise<any> {
+    return lastValueFrom(this._http.delete(`${this._urlBase}?${item}`, { responseType: 'text' }).pipe());
   }
+
 }

@@ -1,4 +1,4 @@
 export interface IDropDown {
   action: string,
-  data: string;
+  data: string[];
 }

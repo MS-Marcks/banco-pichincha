@@ -11,6 +11,6 @@ export class ModalComponent {
   @Output("close") close: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   closeModal() {
-    this.close.emit(false);
+    this.close.emit(true);
   }
 }

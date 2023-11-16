@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { PrincipalInterceptorService } from './core/interceptors/principal.interceptor.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -15,6 +15,7 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     CoreModule,
     SharedModule
   ],

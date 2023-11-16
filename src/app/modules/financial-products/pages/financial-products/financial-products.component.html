@@ -1,22 +1,24 @@
 <header class="separator">
   <div>
-    <shared-search-bar></shared-search-bar>
+    <shared-search-bar (search)="search($event)"></shared-search-bar>
   </div>
   <div>
     <button class="btn btn-primary" (click)="redirectTo('products/form')">Agregar</button>
   </div>
 </header>
 
-<financial-products-table (dropDown)="actionDropDown($event)"></financial-products-table>
+<financial-products-table [dataSource]="filterDataSource"  (dropDown)="actionDropDown($event)"></financial-products-table>
 
 <shared-modal *ngIf="modalIsVisible" (close)="closeModal($event)" [title]="'Eliminar Registro'">
-  <p class="group">¿Estas seguro de eliminar el "producto titulo-de-producto"</p>
+  <p class="group">
+    ¿Estas seguro de eliminar el producto {{(this.selectedProduct === undefined)?"":this.selectedProduct.name}}?
+  </p>
   <div class="form-row group">
     <div>
-      <button type="button" class="btn btn-secondary">Cancelar</button>
+      <button type="button" class="btn btn-secondary" (click)="closeModal(true)">Cancelar</button>
     </div>
     <div>
-      <button type="button" class="btn btn-primary">Confirmar</button>
+      <button type="button" class="btn btn-primary" (click)="deleteProduct()">Confirmar</button>
     </div>
   </div>
 </shared-modal>

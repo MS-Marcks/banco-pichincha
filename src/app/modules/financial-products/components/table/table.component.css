@@ -10,16 +10,9 @@ th {
   width: 14.28%;
 }
 
-
 .table-responsive {
   overflow-x: auto;
 }
 
-.footer-table {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
 

@@ -5,7 +5,8 @@ import { FinancialProductsFormComponent } from './pages/financial-products-form/
 
 const routes: Routes = [
   { path: "", component: FinancialProductsComponent },
-  { path: "form", component: FinancialProductsFormComponent }
+  { path: "form", component: FinancialProductsFormComponent },
+  { path: "form/:id", component: FinancialProductsFormComponent }
 ];
 
 @NgModule({
