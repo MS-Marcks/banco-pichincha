@@ -1,0 +1,8 @@
+<div class="tooltip-container">
+  <span class="tooltip-trigger" (mouseenter)="toggleTooltip()" (mouseleave)="toggleTooltip()">
+    <ng-content></ng-content>
+  </span>
+  <div *ngIf="isTooltipVisible" class="tooltip-content">
+    {{message}}
+  </div>
+</div>

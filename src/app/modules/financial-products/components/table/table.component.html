@@ -1,0 +1,51 @@
+<div class="card">
+  <ng-container *ngIf="dataSource !== undefined; else elseDataSourceLoading">
+    <ng-container *ngIf="dataSource.length > 0; else elseDataSourceInfo">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Logo</th>
+              <th>Nombre del producto</th>
+              <th>Descripción <i class="fa fa-info-circle" aria-hidden="true"></i></th>
+              <th>Fecha de liberación <i class="fa fa-info-circle" aria-hidden="true"></i></th>
+              <th>Fecha de revisión <i class="fa fa-info-circle" aria-hidden="true"></i></th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngIf="loadNewData;">
+              <tr *ngFor="let p of dataSourceDisplay">
+                <td><img [src]="p.logo" alt="logo" width="100" height="50"></td>
+                <td>{{p.name}}</td>
+                <td>{{p.description}}</td>
+                <td>{{p.date_release | date: "yyyy-MM-dd" : 'UTC'}}</td>
+                <td>{{p.date_revision | date: "yyyy-MM-dd" : 'UTC'}}</td>
+                <td>
+                  <shared-dropdown>
+                    <button type="button" (click)="actionDropDown('EDIT',[p.id])"><i class="fa fa-pencil"
+                        aria-hidden="true"></i>Editar</button>
+                    <button type="button" (click)="actionDropDown('DELETE',[p.id])"><i class="fa fa-trash"
+                        aria-hidden="true"></i>Eliminar</button>
+                  </shared-dropdown>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+      <shared-pagination [datasource]="dataSource" (newDataSource)="setNewDataSource($event)"> </shared-pagination>
+    </ng-container>
+  </ng-container>
+  <ng-template #elseDataSourceLoading>
+    <div style="display: flex; flex-direction: row; justify-content: center; padding-top: 40px; padding-bottom: 40px;">
+      <h3><strong>Cargando...</strong></h3>
+    </div>
+  </ng-template>
+  <ng-template #elseDataSourceInfo>
+    <div style="display: flex; flex-direction: row; justify-content: center;padding-top: 40px; padding-bottom: 40px;">
+      <h3><strong>No hay datos para mostrar...</strong></h3>
+    </div>
+  </ng-template>
+
+</div>
