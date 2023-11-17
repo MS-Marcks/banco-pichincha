@@ -22,36 +22,40 @@
                 <td>{{p.date_release | date: "yyyy-MM-dd" : 'UTC'}}</td>
                 <td>{{p.date_revision | date: "yyyy-MM-dd" : 'UTC'}}</td>
                 <td>
+                  <!-- DropDown -->
                   <shared-dropdown>
                     <button type="button" (click)="actionDropDown('EDIT',[p.id])"><i class="fa fa-pencil"
                         aria-hidden="true"></i>Editar</button>
                     <button type="button" (click)="actionDropDown('DELETE',[p.id])"><i class="fa fa-trash"
                         aria-hidden="true"></i>Eliminar</button>
                   </shared-dropdown>
+                  <!-- DropDown -->
                 </td>
               </tr>
             </ng-container>
           </tbody>
         </table>
       </div>
-
+      <!-- Paginación -->
       <div class="container-pagination">
         <div><button class="btn btn-primary" data-test="page-back" (click)="back()">Anterior</button></div>
         <div>{{currentPage}}/{{totalPages}}</div>
-        <div><button class="btn btn-primary"  data-test="page-next" (click)="next()">Siguiente</button></div>
+        <div><button class="btn btn-primary" data-test="page-next" (click)="next()">Siguiente</button></div>
       </div>
       <div class="footer-pagination">
         <div>
           {{(dataSource === undefined)?0:results}} Resultados
         </div>
         <div>
-          <select name="itemforpage" data-test="itemforpage" (change)="onSelectedItemForPage($event)" class="form-field-select">
+          <select name="itemforpage" data-test="itemforpage" (change)="onSelectedItemForPage($event)"
+            class="form-field-select">
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="15">15</option>
           </select>
         </div>
       </div>
+      <!-- Paginación -->
     </ng-container>
   </ng-container>
   <ng-template #elseDataSourceLoading>

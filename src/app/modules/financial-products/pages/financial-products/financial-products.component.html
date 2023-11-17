@@ -1,14 +1,21 @@
+<!-- Header -->
 <header class="separator">
   <div>
+    <!-- Opción para buscar -->
     <shared-search-bar (search)="search($event)"></shared-search-bar>
   </div>
   <div>
+    <!-- Crear un nuevo producto -->
     <button class="btn btn-primary" (click)="redirectTo('products/form')">Agregar</button>
   </div>
 </header>
+<!-- Header -->
 
+<!-- Tabla de productos -->
 <financial-products-table [dataSource]="dataSource" (dropDown)="actionDropDown($event)"></financial-products-table>
+<!-- Tabla de productos -->
 
+<!-- Modal -->
 <shared-modal *ngIf="modalIsVisible" (close)="closeModal($event)" [title]="'Eliminar Registro'">
   <p class="group">
     ¿Estas seguro de eliminar el producto {{(this.selectedProduct === undefined)?"":this.selectedProduct.name}}?
@@ -22,3 +29,4 @@
     </div>
   </div>
 </shared-modal>
+<!-- Modal -->

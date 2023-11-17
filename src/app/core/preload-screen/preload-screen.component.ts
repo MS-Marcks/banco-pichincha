@@ -13,6 +13,7 @@ export class PreloadScreenComponent implements OnDestroy {
   loading = false;
   private preloadScreenSubscription: Subscription;
   constructor(private preloadScreenService: PreloadScreenService) {
+    // Servicio para esperar el evento de mostrar la pantalla de carga
     this.preloadScreenSubscription = this.preloadScreenService.preloadScreenSubject$.subscribe((state: boolean) => {
       this.loading = state;
     });

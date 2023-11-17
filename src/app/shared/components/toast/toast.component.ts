@@ -16,6 +16,7 @@ export class ToastComponent implements OnDestroy {
   private toastSubscription: Subscription;
 
   constructor(private toastService: ToastService, private renderer: Renderer2, private el: ElementRef) {
+    // servicio para esperar el evento para activar el toast y mostrar el mensaje
     this.toastSubscription = this.toastService.toastState$.subscribe((toast: IToast) => {
       this.toastConf = toast;
       this.show();
@@ -26,6 +27,7 @@ export class ToastComponent implements OnDestroy {
     this.toastSubscription.unsubscribe();
   }
 
+  // función para mostrar y modificarlo para mostrar el mensaje
   show() {
     const toastElement: HTMLDivElement = this.el.nativeElement.querySelector('.toast');
 
@@ -52,6 +54,6 @@ export class ToastComponent implements OnDestroy {
       } else if (this.toastConf.type === EToast.DANGER) {
         this.renderer.removeClass(toastElement, 'toast-danger');
       }
-    }, 3000);
+    }, 3000/* ocultar despues de 3 segundos */);
   }
 }

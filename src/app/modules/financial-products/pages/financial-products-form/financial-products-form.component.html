@@ -7,35 +7,45 @@
       <div class="form-row">
         <div>
           <label for="id" class="form-label-info">ID
+             <!-- Tooltip -->
             <shared-tooltip message="El ID debe contener entre 3 y 10 caracteres">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
             </shared-tooltip>
+             <!-- Tooltip -->
           </label>
           <input id="id" type="text" name="id" class="form-field" formControlName="id" required
             placeholder="(Ejem: tjr-crd)">
+             <!-- Error  -->
           <small *ngIf="form.controls['id'].errors && form.controls['id'].touched" id="id-help" class="form-error">ID no
             válido!</small>
+             <!-- Error  -->
         </div>
         <div>
           <label for="name" class="form-label-info">Nombre
+             <!-- Tooltip -->
             <shared-tooltip message="El nombre debe contener entre 5 y 100 caracteres (Tarjeta de crédito)">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
             </shared-tooltip>
+             <!-- Tooltip -->
           </label>
           <input type="text" name="name" InputNumericOnly id="name" class="form-field"
             placeholder="Tarjeta de Crédito (Ejem: 12345)" formControlName="name" required>
+            <!-- Error  -->
           <small *ngIf="form.controls['name'].errors && form.controls['name'].touched" id="name-help"
             class="form-error">Nombre no
             válido!</small>
+            <!-- Error  -->
         </div>
       </div>
       <div class="form-row">
         <div>
           <label for="description" class="form-label-info">Descripción
+             <!-- Tooltip -->
             <shared-tooltip
               message="La descripción debe contener entre 10 y 200 caracteres (Tarjeta de consumo bajo la modalidad de crédito)">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
             </shared-tooltip>
+             <!-- Tooltip -->
           </label>
           <input type="text" name="description" id="description" class="form-field" formControlName="description"
             placeholder="Tarjeta de consumo bajo la modalidad de crédito (Ejem: Visa)" required>
@@ -45,43 +55,55 @@
         <div>
           <label for="logo" class="form-label-info">
             Logo
+             <!-- Tooltip -->
             <shared-tooltip message="El Logo debe ser un enlace">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
             </shared-tooltip>
+             <!-- Tooltip -->
           </label>
           <input type="text" name="logo" id="logo" class="form-field" formControlName="logo"
             placeholder="Enlace (Ejem: https://pagina.com/imagen.png)" required>
+            <!-- Error  -->
           <small *ngIf="form.controls['logo'].errors && form.controls['logo'].touched" id="logo-help"
             class="form-error">Enlace no valido!</small>
+            <!-- Error  -->
         </div>
       </div>
       <div class="form-row">
         <div>
           <div class="form-label-info m-0 p-0">
             <label for="date_release">Fecha de liberación</label>
+             <!-- Tooltip -->
             <shared-tooltip message="La fecha de liberación debe ser a partir de la fecha actual o posterior">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
             </shared-tooltip>
+             <!-- Tooltip -->
           </div>
           <input type="date" name="date_release" (change)="setDateRevision($event)" id="date_release"
             class="form-field form-field-full" formControlName="date_release" required>
+            <!-- Error  -->
           <small *ngIf="form.controls['date_release'].errors && form.controls['date_release'].touched"
             id="date_release-help" class="form-error">Fecha de liberación no valida!</small>
+            <!-- Error  -->
         </div>
         <div>
           <div class="form-label-info">
             <label class="disabled" for="date_revision">Fecha de Revision</label>
+             <!-- Tooltip -->
             <shared-tooltip class="m-0 p-0"
               message="La fecha de revisión será exactamente un año posterior a la fecha de liberación (automática)">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
             </shared-tooltip>
+             <!-- Tooltip -->
           </div>
           <div id="date_revision" class="disabled">{{form.get("date_revision")?.value}}</div>
         </div>
       </div>
       <div class="form-row group">
-        <div >
-          <button *ngIf="action !== 'EDIT'" type="button" class="btn btn-secondary" (click)="resetForm()">Reiniciar</button>
+        <div>
+          <!-- Si esta en modo edición no muestra el botón de reiniciar -->
+          <button *ngIf="action !== 'EDIT'" type="button" class="btn btn-secondary"
+            (click)="resetForm()">Reiniciar</button>
         </div>
         <div>
           <button type="submit" id="saveProduct" class="btn btn-primary">Guardar</button>

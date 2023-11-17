@@ -9,10 +9,12 @@ export class PreloadScreenService {
   private preloadScreenSubject = new Subject<boolean>();
   preloadScreenSubject$ = this.preloadScreenSubject.asObservable();
 
+  // función para mostrar la pantalla de carga
   show() {
     this.preloadScreenSubject.next(true);
   }
 
+  // función para ocultar la pantalla de carga
   hide() {
     this.preloadScreenSubject.next(false);
   }

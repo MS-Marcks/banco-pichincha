@@ -14,6 +14,7 @@ export class FinancialProductsService extends BaseEndpointService<IFinancialProd
     super(`${environment.URLBASE}products`, http);
   }
 
+  // función para verificar si existe un producto
   async verificationProductById(id: string): Promise<boolean> {
     return lastValueFrom(this._http.get<boolean>(`${environment.URLBASE}products/verification?id=${id}`).pipe());
   }

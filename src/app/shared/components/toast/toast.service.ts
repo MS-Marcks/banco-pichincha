@@ -11,6 +11,7 @@ export class ToastService {
   private toastSubject = new Subject<IToast>();
   toastState$ = this.toastSubject.asObservable();
 
+  // función para activar el toast
   showToast(type: EToast, message: string) {
     this.toastSubject.next({ type, message });
   }

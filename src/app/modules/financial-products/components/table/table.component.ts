@@ -28,6 +28,7 @@ export class TableComponent implements OnInit, OnChanges {
     }
   }
 
+  //función para gestionar el filtrado del input search-bar
   ngOnChanges(changes: SimpleChanges): void {
     if (changes["dataSource"] && this.dataSource) {
       this.loadNewData = true;
@@ -35,10 +36,13 @@ export class TableComponent implements OnInit, OnChanges {
     }
   }
 
+  // funcion para activar el dropdown y sus funciones (Editar y eliminar)
   actionDropDown(action: string, data: string[]): void {
     this.dropDown.emit({ action, data });
   }
 
+
+  // función para seleccionar la cantidad de elementos por página
   onSelectedItemForPage(event: any): void {
     try {
       this.itemForPage = parseInt(event.target.value);
@@ -49,6 +53,7 @@ export class TableComponent implements OnInit, OnChanges {
     }
   }
 
+  // función para moverse para adelante en la paginación
   next(): void {
     if (this.currentPage < this.totalPages) {
       this.currentPage += 1;
@@ -56,6 +61,7 @@ export class TableComponent implements OnInit, OnChanges {
     }
   }
 
+  // función para moverse para atrás en la paginación
   back(): void {
     if (this.currentPage > 1) {
       this.currentPage -= 1;
@@ -63,12 +69,14 @@ export class TableComponent implements OnInit, OnChanges {
     }
   }
 
+  // función para establecer de nuevo los valores de la paginación
   setNewParameters(): void {
     this.totalPages = Math.ceil(this.dataSource.length / this.itemForPage);
     this.currentPage = 1;
     this.getItemCurrentPage();
   }
 
+  // función para obtener los nuevos valores para mostrar en la tabla
   getItemCurrentPage(): void {
     const begin = (this.currentPage - 1) * this.itemForPage;
     const end = begin + this.itemForPage;
