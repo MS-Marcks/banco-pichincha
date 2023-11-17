@@ -1,5 +1,5 @@
 
-<h1 style="text-align:center">BANCO PICHINCHA</h1>
-<center>
+<h1>
   <img  src="docs/img/logo.png" width="100">
-</center>
+  BANCO PICHINCHA
+</h1>
