@@ -1,10 +1,10 @@
-/* Estilo del contenedor del dropdown */
 .dropdown {
   position: relative;
-  display: inline-block;;
+  display: inline-block;
+  ;
 }
 
-/* Estilo del botón del dropdown */
+
 .dropdown-btn {
   background-color: var(--principal-color);
   color: #fff;
@@ -14,10 +14,8 @@
   cursor: pointer;
 }
 
-/* Estilo del contenido del dropdown oculto por defecto */
 .dropdown-content {
   display: none;
-  /*position: absolute;*/
   background: white;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
@@ -25,12 +23,10 @@
   z-index: 10;
 }
 
-/* Mostrar el contenido del dropdown cuando el botón se haga hover */
 .dropdown.show-dropdown .dropdown-content {
   display: block;
 }
 
-/* Cambiar el color del enlace cuando se haga hover */
 .dropdown-content button:hover {
   background-color: #ddd;
 }

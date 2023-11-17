@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/internal/Subject';
 import { IToast } from '../../interfaces/itoast';
-import { EToast } from 'app/configs/etoast';
+import { EToast } from '../../../configs/etoast';
 
 @Injectable({
   providedIn: 'root'

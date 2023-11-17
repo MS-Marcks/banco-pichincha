@@ -8,6 +8,7 @@ import { ToastService } from '../../../../shared/components/toast/toast.service'
 import { IDropDown } from '../../../../shared/interfaces/idrop-down';
 import { IFinancialProducts } from '../../../../shared/interfaces/ifinancial-products';
 
+
 @Component({
   selector: 'app-financial-products',
   templateUrl: './financial-products.component.html',
@@ -36,7 +37,7 @@ export class FinancialProductsComponent implements OnInit {
       this.dataSource = res;
       this.dataSourceShadow = res;
     } catch (error: any) {
-      console.error(error)
+      this.toastService.showToast(EToast.DANGER, "Error crítico: Comuniquese con el administrador");
     } finally {
       this.preloadScreenService.hide();
     }
@@ -46,19 +47,21 @@ export class FinancialProductsComponent implements OnInit {
     if (this.selectedProduct === undefined) return;
     try {
       const isExistProduct = await this.financialProductsService.verificationProductById(this.selectedProduct.id);
-      if (!isExistProduct) return this.toastService.showToast(EToast.DANGER,"Error: El producto no existe");
+      if (!isExistProduct) {
+        this.closeModal(true); this.toastService.showToast(EToast.DANGER, "Error: El producto no existe")
+        return
+      }
       this.preloadScreenService.show();
       await this.financialProductsService.Delete(`id=${this.selectedProduct.id}`);
-      this.toastService.showToast(EToast.SUCCESS,"Se ha eliminado exitosamente");
+      this.toastService.showToast(EToast.SUCCESS, "Se ha eliminado exitosamente");
       this.closeModal(true);
     } catch (error: any) {
-      console.log(error);
+      this.toastService.showToast(EToast.DANGER, "Error crítico: Comuniquese con el administrador");
     } finally {
       await this.getProducts();
       this.preloadScreenService.hide();
     }
   }
-
 
   actionDropDown(event: IDropDown): void {
     if (event.action === EDropDown.EDIT) {
@@ -84,12 +87,11 @@ export class FinancialProductsComponent implements OnInit {
   }
 
   search(event: string): void {
-    console.log(event)
     if (event.trim() === "") {
       this.dataSource = this.dataSourceShadow;
       return;
     };
-    this.dataSource = this.dataSourceShadow?.filter(item => Object.values(item).some(value => value.toLowerCase().includes(event.toLocaleLowerCase())));
+    this.dataSource = this.dataSourceShadow?.filter(item => Object.values(item).some(value => value.toString().toLowerCase().includes(event.toLowerCase())));
   }
 
 }

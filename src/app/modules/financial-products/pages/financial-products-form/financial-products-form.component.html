@@ -1,12 +1,12 @@
 <div class="card">
   <header class="header-form">
-    <h1>Formulario de Registro <a routerLink="/products">(Regresar)</a></h1>
+    <h2>Formulario de Registro <a routerLink="/products">(Regresar)</a></h2>
   </header>
   <div class="body-form">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-row">
         <div>
-          <label for="id" style="display: flex; flex-direction: row; gap: 5px;">ID
+          <label for="id" class="form-label-info">ID
             <shared-tooltip message="El ID debe contener entre 3 y 10 caracteres">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
             </shared-tooltip>
@@ -17,7 +17,7 @@
             válido!</small>
         </div>
         <div>
-          <label for="name" style="display: flex; flex-direction: row; gap: 5px;">Nombre
+          <label for="name" class="form-label-info">Nombre
             <shared-tooltip message="El nombre debe contener entre 5 y 100 caracteres (Tarjeta de crédito)">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
             </shared-tooltip>
@@ -31,7 +31,7 @@
       </div>
       <div class="form-row">
         <div>
-          <label for="description" style="display: flex; flex-direction: row; gap: 5px;">Descripción
+          <label for="description" class="form-label-info">Descripción
             <shared-tooltip
               message="La descripción debe contener entre 10 y 200 caracteres (Tarjeta de consumo bajo la modalidad de crédito)">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
@@ -43,7 +43,8 @@
             id="description-help" class="form-error">Descripción no valida!</small>
         </div>
         <div>
-          <label for="logo" style="display: flex; flex-direction: row; gap: 5px;">Logo
+          <label for="logo" class="form-label-info">
+            Logo
             <shared-tooltip message="El Logo debe ser un enlace">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
             </shared-tooltip>
@@ -56,7 +57,7 @@
       </div>
       <div class="form-row">
         <div>
-          <div style="display: flex; flex-direction: row; gap: 5px; margin: 0px; padding: 0px;">
+          <div class="form-label-info m-0 p-0">
             <label for="date_release">Fecha de liberación</label>
             <shared-tooltip message="La fecha de liberación debe ser a partir de la fecha actual o posterior">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
@@ -68,9 +69,9 @@
             id="date_release-help" class="form-error">Fecha de liberación no valida!</small>
         </div>
         <div>
-          <div style="display: flex; flex-direction: row; gap: 5px; margin: 0px; padding: 0px;">
-            <label class="disabled" for="date_revision">Fecha de revisión</label>
-            <shared-tooltip
+          <div class="form-label-info">
+            <label class="disabled" for="date_revision">Fecha de Revision</label>
+            <shared-tooltip class="m-0 p-0"
               message="La fecha de revisión será exactamente un año posterior a la fecha de liberación (automática)">
               <i class="fa fa-info-circle" aria-hidden="true"></i>
             </shared-tooltip>
@@ -79,8 +80,8 @@
         </div>
       </div>
       <div class="form-row group">
-        <div>
-          <button type="button" class="btn btn-secondary" (click)="resetForm()">Reiniciar</button>
+        <div >
+          <button *ngIf="action !== 'EDIT'" type="button" class="btn btn-secondary" (click)="resetForm()">Reiniciar</button>
         </div>
         <div>
           <button type="submit" id="saveProduct" class="btn btn-primary">Guardar</button>

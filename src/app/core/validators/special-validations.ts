@@ -2,9 +2,7 @@ export class SpecialValidations {
 
   static currentOrLaterDate(controlName: string, dateUpdate?: Date): any {
     return (control: any) => {
-
       if (!control?.value) return;
-
       let dateCurrentUpdate = new Date();
       if (dateUpdate !== undefined) {
         dateCurrentUpdate = new Date(dateUpdate);

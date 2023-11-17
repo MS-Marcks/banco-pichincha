@@ -65,7 +65,6 @@ export class FinancialProductsFormComponent {
       dateCurrentUpdate.setDate(dateCurrentUpdate.getDate() + 1);
     }
 
-    console.log(dateCurrentUpdate.getTime())
     const dateRelease = new Date(event.target.value);
 
     const fixedDate = (num: number): string => (num < 10 ? `0${num}` : `${num}`);
@@ -98,14 +97,19 @@ export class FinancialProductsFormComponent {
       this.preloadScreenService.show();
       const isExistProduct = await this.financialProductsService.verificationProductById(this.form.get("id")?.value);
       if (this.action === EActionForm.SAVE) {
-        if (isExistProduct) return this.toastService.showToast(EToast.DANGER, "Error: El producto ya existe");
+        if (isExistProduct) {
+          return this.toastService.showToast(EToast.DANGER, "Error: El producto ya existe");
+        };
         await this.financialProductsService.Post(this.form.value);
         this.resetForm();
         this.toastService.showToast(EToast.SUCCESS, "Exito: Se ha creado el producto");
         return;
       }
       if (this.action === EActionForm.EDIT) {
-        if (!isExistProduct) return this.toastService.showToast(EToast.DANGER, "Error: El producto ya no existe");
+        if (!isExistProduct) {
+          successUpdate = true;
+          return this.toastService.showToast(EToast.DANGER, "Error: El producto ya no existe");
+        };
         let request = this.form.value;
         request.id = this.form.get("id")?.value
         await this.financialProductsService.Put(request);
@@ -114,7 +118,7 @@ export class FinancialProductsFormComponent {
         return;
       }
     } catch (error: any) {
-      console.error(error);
+      this.toastService.showToast(EToast.DANGER, "Error crítico: Comuniquese con el administrador");
     } finally {
       this.preloadScreenService.hide();
       if (successUpdate) {

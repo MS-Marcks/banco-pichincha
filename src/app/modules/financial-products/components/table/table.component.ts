@@ -7,7 +7,7 @@ import { IFinancialProducts } from '../../../../shared/interfaces/ifinancial-pro
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit,OnChanges {
+export class TableComponent implements OnInit, OnChanges {
 
 
   @Input("dataSource") dataSource: IFinancialProducts[] | any;
@@ -22,13 +22,16 @@ export class TableComponent implements OnInit,OnChanges {
   results: number = 1;
 
   ngOnInit(): void {
-    this.loadNewData = true;
-    this.setNewParameters();
+    if (this.dataSource) {
+      this.loadNewData = true;
+      this.setNewParameters();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes["dataSource"]) {
-      this.setNewParameters()
+    if (changes["dataSource"] && this.dataSource) {
+      this.loadNewData = true;
+      this.setNewParameters();
     }
   }
 

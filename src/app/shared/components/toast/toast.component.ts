@@ -28,6 +28,7 @@ export class ToastComponent implements OnDestroy {
 
   show() {
     const toastElement: HTMLDivElement = this.el.nativeElement.querySelector('.toast');
+
     if (!toastElement) return;
 
     if (this.toastConf.type === EToast.SUCCESS) {
@@ -40,8 +41,6 @@ export class ToastComponent implements OnDestroy {
 
     this.renderer.addClass(toastElement, 'toast-show');
     this.renderer.removeClass(toastElement, 'toast-hide');
-    this.renderer.removeClass(toastElement, 'fade-in-out');
-
 
     setTimeout(() => {
       this.renderer.removeClass(toastElement, 'toast-show');

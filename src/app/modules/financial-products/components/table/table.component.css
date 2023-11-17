@@ -14,14 +14,13 @@ th {
   overflow-x: auto;
 }
 
-
-.container-pagination{
+.container-pagination {
   padding-right: 25px;
   margin-top: 20px;
   display: flex;
   flex-direction: row;
   gap: 20px;
-  justify-content:right;
+  justify-content: right;
   align-items: center;
 }
 
@@ -34,3 +33,10 @@ th {
   padding-right: 25px;
 }
 
+.container-loading-table {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}

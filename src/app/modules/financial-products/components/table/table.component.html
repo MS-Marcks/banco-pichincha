@@ -36,34 +36,32 @@
       </div>
 
       <div class="container-pagination">
-        <div><button class="btn btn-primary" (click)="back()">Anterior</button></div>
+        <div><button class="btn btn-primary" data-test="page-back" (click)="back()">Anterior</button></div>
         <div>{{currentPage}}/{{totalPages}}</div>
-        <div><button class="btn btn-primary" (click)="next()">Siguiente</button></div>
+        <div><button class="btn btn-primary"  data-test="page-next" (click)="next()">Siguiente</button></div>
       </div>
       <div class="footer-pagination">
         <div>
           {{(dataSource === undefined)?0:results}} Resultados
         </div>
         <div>
-          <select name="itemforpage" (change)="onSelectedItemForPage($event)" class="form-field-select">
+          <select name="itemforpage" data-test="itemforpage" (change)="onSelectedItemForPage($event)" class="form-field-select">
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="15">15</option>
           </select>
         </div>
       </div>
-
     </ng-container>
   </ng-container>
   <ng-template #elseDataSourceLoading>
-    <div style="display: flex; flex-direction: row; justify-content: center; padding-top: 40px; padding-bottom: 40px;">
-      <h3><strong>Cargando...</strong></h3>
+    <div class="container-loading-table">
+      <h3><strong id="state-loading">Cargando...</strong></h3>
     </div>
   </ng-template>
   <ng-template #elseDataSourceInfo>
-    <div style="display: flex; flex-direction: row; justify-content: center;padding-top: 40px; padding-bottom: 40px;">
+    <div class="container-loading-table">
       <h3><strong>No hay datos para mostrar...</strong></h3>
     </div>
   </ng-template>
-
 </div>

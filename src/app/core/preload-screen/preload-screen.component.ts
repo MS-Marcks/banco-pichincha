@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './preload-screen.component.html',
   styleUrls: ['./preload-screen.component.css']
 })
-export class PreloadScreenComponent  implements OnDestroy {
+export class PreloadScreenComponent implements OnDestroy {
 
   loading = false;
   private preloadScreenSubscription: Subscription;
