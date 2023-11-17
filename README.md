@@ -25,7 +25,7 @@ pnpm install
 ```bash
 npm start
 ```
-- Iniciar la ejecución servidor de desarrollo  (estando en la carpeta del proyecto)
+- Iniciar las pruebas (estando en la carpeta del proyecto)
 ```bash
 npm run test
 ```
